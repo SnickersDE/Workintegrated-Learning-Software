@@ -1345,6 +1345,35 @@ th {
   padding: 16px;
 }
 
+.report-card--reflection {
+  border-color: #d8d4f5;
+  background: #fbfaff;
+}
+
+.report-card__intro {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+.report-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.report-chip {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f5f7ff;
+  border: 1px solid #d7deef;
+  color: #3148ac;
+  font-size: 0.84rem;
+}
+
 .report-list {
   margin: 0;
   padding-left: 18px;

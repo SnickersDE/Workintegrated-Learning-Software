@@ -38,11 +38,11 @@ function renderMeasureFields(measure, editable) {
     ["category", "Kategorie", measure.category || "Noch offen"],
     ["integrated", "Arbeitsintegriert", measure.integrated || "Noch offen"],
     ["goal", "Zielbezug", measure.goal || "Noch offen"],
-    ["duration", "Zeitraum", measure.duration || "Noch offen"],
-    ["owner", "Verantwortlich", measure.owner || "Noch offen"],
     ["note", "Angaben zur Massnahme", measure.note || ""],
     ["learningPlace", "Lernort", measure.learningPlace || ""],
     ["learningFormat", "Lernform", measure.learningFormat || ""],
+    ["duration", "Zeitraum", measure.duration || "Noch offen"],
+    ["owner", "Verantwortlich", measure.owner || "Noch offen"],
     ["certification", "Angestrebte Zertifizierung", measure.certification || ""],
     ["lengthCost", "Laenge und Kosten", measure.lengthCost || ""]
   ];
@@ -61,6 +61,24 @@ function renderMeasureFields(measure, editable) {
   `;
 }
 
+function renderMeasureHighlights(measure) {
+  const highlights = [
+    ["Arbeitsintegriert", measure.integrated || "Noch offen"],
+    ["Lernort", measure.learningPlace || "Noch offen"],
+    ["Lernform", measure.learningFormat || "Noch offen"]
+  ];
+
+  return `
+    <div class="report-chip-row">
+      ${highlights.map(([label, value]) => `
+        <span class="report-chip">
+          <strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}
+        </span>
+      `).join("")}
+    </div>
+  `;
+}
+
 function renderMeasures(measures, editable) {
   if (!measures.length) {
     return `<div class="empty-state">Es wurden noch keine PE-Massnahmen ausgewaehlt oder eingetragen.</div>`;
@@ -71,6 +89,7 @@ function renderMeasures(measures, editable) {
       ${measures.map((measure) => `
         <article class="report-card">
           <h3>${escapeHtml(measure.title || "PE-Massnahme")}</h3>
+          ${renderMeasureHighlights(measure)}
           ${renderMeasureFields(measure, editable)}
         </article>
       `).join("")}
@@ -90,6 +109,10 @@ function renderReport() {
   const introPersona = getBlock("Einleitung", "Persona und Zielrolle");
   const mainAnalysis = getBlock("Hauptteil", "Bedarfsanalyse");
   const mainTicket = getBlock("Hauptteil", "PE-Ticket");
+  const reflectionIds = new Set(["pitch_text", "wil_herausforderungen"]);
+  const mainTicketItems = mainTicket?.items || [];
+  const mainTicketCoreItems = mainTicketItems.filter((item) => !reflectionIds.has(item.id));
+  const reflectionItems = mainTicketItems.filter((item) => reflectionIds.has(item.id));
 
   reportTitle.textContent = model.title;
   reportLead.textContent = "Diese Seite zieht alle Antworten der Gruppe zusammen und zeigt die Logik eurer Loesung in kompakter Form.";
@@ -125,12 +148,19 @@ function renderReport() {
         </article>
         <article class="report-card">
           <h3>PE-Ticket</h3>
-          ${renderBlockItems(mainTicket?.items || [], isEditMode)}
+          ${renderBlockItems(mainTicketCoreItems, isEditMode)}
         </article>
       </div>
       <div class="report-section">
         <h3>PE-Massnahmen</h3>
         ${renderMeasures(model.measures, isEditMode)}
+      </div>
+      <div class="report-section">
+        <h3>Reflexion</h3>
+        <article class="report-card report-card--reflection">
+          <p class="report-card__intro">Diese Angaben helfen euch in der Reflexionsrunde dabei, die eigenen PE-Massnahmen mit anderen Gruppen zu vergleichen und zu besprechen.</p>
+          ${renderBlockItems(reflectionItems, isEditMode)}
+        </article>
       </div>
     </section>
   `;
