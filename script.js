@@ -312,10 +312,17 @@ function toggleCardEditing(card, enabled) {
 
 function updateSectionSaveButton(button, saved) {
   if (!button) return;
+  const isLockVariant = button.dataset.buttonVariant === "lock";
   button.classList.toggle("button--section-saved", saved);
   button.classList.toggle("button--ghost", !saved);
+  button.classList.toggle("button--section-lock", isLockVariant);
   button.setAttribute("aria-pressed", saved ? "true" : "false");
   button.setAttribute("title", saved ? "Erneut klicken, um wieder zu bearbeiten" : "Container abspeichern");
+
+  if (isLockVariant) {
+    button.classList.toggle("is-unlocked", !saved);
+    button.setAttribute("aria-label", saved ? "Persona entsperren" : "Persona sperren");
+  }
 }
 
 function setSectionCardSavedState(card, button, saved, options = {}) {
@@ -394,17 +401,33 @@ function injectSectionSaveButtons() {
 
   cardsWithFields.forEach((card, index) => {
     const cardId = `${currentWorkbookSection || "page"}-card-${index + 1}`;
+    const saveVariant = card.dataset.sectionSaveVariant || "default";
+    const hintText = card.dataset.sectionSaveHint || "";
     card.dataset.sectionSaveId = cardId;
 
     const saveRow = document.createElement("div");
     saveRow.className = "section-save-row";
+
+    if (hintText) {
+      const hint = document.createElement("span");
+      hint.className = "inline-tooltip";
+      hint.tabIndex = 0;
+      hint.setAttribute("role", "note");
+      hint.setAttribute("aria-label", "Hinweis zur Persona");
+      hint.dataset.tooltip = hintText;
+      hint.textContent = "i";
+      saveRow.appendChild(hint);
+    }
 
     const saveButton = document.createElement("button");
     saveButton.type = "button";
     saveButton.className = "button button--small button--ghost button--section-save";
     saveButton.dataset.action = "save-workbook";
     saveButton.dataset.saveMode = "section";
-    saveButton.innerHTML = '<span class="button__label">Alles abspeichern</span><span class="button__check" aria-hidden="true">✓</span>';
+    saveButton.dataset.buttonVariant = saveVariant;
+    saveButton.innerHTML = saveVariant === "lock"
+      ? '<span class="button__lock button__lock--closed" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7 10V7.8C7 5.15 9.24 3 12 3s5 2.15 5 4.8V10h.9c.61 0 1.1.49 1.1 1.1v8.8c0 .61-.49 1.1-1.1 1.1H6.1C5.49 21 5 20.51 5 19.9v-8.8C5 10.49 5.49 10 6.1 10H7zm2 0h6V7.8C15 6.28 13.66 5 12 5S9 6.28 9 7.8V10z"/></svg></span><span class="button__lock button__lock--open" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M15 10V7.9C15 6.3 13.66 5 12 5S9 6.3 9 7.9H7C7 5.19 9.24 3 12 3s5 2.19 5 4.9V10h.9c.61 0 1.1.49 1.1 1.1v8.8c0 .61-.49 1.1-1.1 1.1H6.1C5.49 21 5 20.51 5 19.9v-8.8C5 10.49 5.49 10 6.1 10H15zm-3 5.75c.69 0 1.25-.56 1.25-1.25s-.56-1.25-1.25-1.25-1.25.56-1.25 1.25.56 1.25 1.25 1.25z"/></svg></span>'
+      : '<span class="button__label">Alles abspeichern</span><span class="button__check" aria-hidden="true">✓</span>';
     attachSaveButtonBehavior(saveButton);
 
     saveRow.appendChild(saveButton);
