@@ -190,7 +190,7 @@
                 item("ticket_koennen", "Kurzdiagnose Koennen", applyOverride(overrides, "ticket_koennen", value(data, "ticket_koennen"))),
                 item("ticket_duerfen", "Kurzdiagnose Duerfen", applyOverride(overrides, "ticket_duerfen", value(data, "ticket_duerfen"))),
                 item("erfolg_alltag", "Erfolg im Alltag", applyOverride(overrides, "erfolg_alltag", value(data, "erfolg_alltag"))),
-                item("erfolg_entlastung", "Entlastung Fuehrung", applyOverride(overrides, "erfolg_entlastung", value(data, "erfolg_entlastung"))),
+                item("erfolg_entlastung", "Entlastung fuer das Team/Fuehrungskraft/Unternehmen", applyOverride(overrides, "erfolg_entlastung", value(data, "erfolg_entlastung"))),
                 item("erfolg_person", "Lernfortschritt Person", applyOverride(overrides, "erfolg_person", value(data, "erfolg_person"))),
                 item("pitch_text", "Sonstige Angaben zur PE-Massnahmen", applyOverride(overrides, "pitch_text", value(data, "pitch_text"))),
                 item("wil_herausforderungen", "WIL-Herausforderungen", applyOverride(overrides, "wil_herausforderungen", value(data, "wil_herausforderungen")))
