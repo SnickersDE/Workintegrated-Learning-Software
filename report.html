@@ -55,6 +55,30 @@
     </header>
 
     <section class="report-section" id="reportContent"></section>
+
+    <section class="report-section">
+      <article class="card">
+        <div class="page-actions">
+          <button class="button button--ghost" data-action="run-storage-check">Health Check</button>
+        </div>
+        <div class="health-check" id="storageHealthResult" style="margin-top: 16px;">
+          <p class="health-check__title">Speicherstatus</p>
+          <div class="health-check__item">
+            <strong>Local Storage</strong>
+            <span data-health="storage">Noch nicht geprueft</span>
+          </div>
+          <div class="health-check__item">
+            <strong>Gespeicherte Formulardaten</strong>
+            <span data-health="workbook">Noch nicht geprueft</span>
+          </div>
+          <div class="health-check__item">
+            <strong>Report-Abzug</strong>
+            <span data-health="report">Noch nicht geprueft</span>
+          </div>
+          <p class="health-check__hint" data-health-summary>Bitte den Health Check starten.</p>
+        </div>
+      </article>
+    </section>
   </main>
 
   <footer class="footer">
