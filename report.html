@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gruppen-Ergebnis | Workintegrated Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand__title">Workintegrated Learning</div>
+      </div>
+      <button class="burger" id="burgerButton" aria-label="Menue oeffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="site-nav" id="siteNav">
+      <div class="site-nav__panel">
+        <div class="site-nav__section">
+          <div class="site-nav__label">Navigation</div>
+          <div class="site-nav__links">
+            <a href="index.html">Ausgangssituation</a>
+            <a href="arbeitsblatt-1.html">Arbeitsblatt 1</a>
+            <a href="arbeitsblatt-2.html">Arbeitsblatt 2</a>
+            <a href="arbeitsblatt-3.html">Arbeitsblatt 3</a>
+            <a class="is-active" href="report.html">Report</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page page-simple">
+    <header class="page-header report-header">
+      <p class="eyebrow">Euer Report</p>
+      <h1 id="reportTitle">Sichtet euren Report und bearbeitet Ihn</h1>
+      <p class="report-lead" id="reportLead">Diese Unterseite fasst alle Antworten der Gruppe sauber zusammen und ergänzt sie um Tipps, Prüfsteine und Best Practices.</p>
+      <div class="report-meta">
+        <span id="metaGroup">Gruppe: -</span>
+        <span id="metaCompany">Unternehmen: -</span>
+        <span id="metaRole">Zielrolle: -</span>
+      </div>
+      <div class="page-actions">
+        <a class="button button--ghost" href="index.html">Zur Navigation</a>
+        <button class="button button--success-light" id="editReport">Bearbeiten</button>
+        <button class="button button--ghost" id="printReport">Ansicht drucken</button>
+        <button class="button button--primary" id="downloadPdf">Report erstellen</button>
+      </div>
+    </header>
+
+    <section class="report-section" id="reportContent"></section>
+  </main>
+
+  <footer class="footer">
+    <p>Gruppen-Ergebnis</p>
+    <a href="index.html">Zur Navigation</a>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="report-utils.js"></script>
+  <script src="script.js"></script>
+  <script src="report.js"></script>
+</body>
+</html>

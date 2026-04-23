@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seminaranleitung | Workintegrated Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand__title">Workintegrated Learning</div>
+      </div>
+      <button class="burger" id="burgerButton" aria-label="Menue oeffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="site-nav" id="siteNav">
+      <div class="site-nav__panel">
+        <div class="site-nav__section">
+          <div class="site-nav__label">Navigation</div>
+          <div class="site-nav__links">
+            <a href="index.html">Ausgangssituation</a>
+            <a href="arbeitsblatt-1.html">Arbeitsblatt 1</a>
+            <a href="arbeitsblatt-2.html">Arbeitsblatt 2</a>
+            <a href="arbeitsblatt-3.html">Arbeitsblatt 3</a>
+            <a href="report.html">Report</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page page-simple">
+    <header class="page-header">
+      <p class="eyebrow">Unterseite</p>
+      <h1>Seminaranleitung</h1>
+      <p class="page-lead">Diese Seite dient nur der Dozierendensteuerung. Die Bearbeitung selbst liegt in den drei separaten Arbeitsblaettern und im abschliessenden Report.</p>
+      <div class="page-actions">
+        <button class="button button--small button--ghost" data-action="open-example-report">Pflege-Beispielreport</button>
+        <a class="button button--small" href="arbeitsblatt-1.html">Zur Einleitung</a>
+      </div>
+    </header>
+
+    <section class="section-stack">
+      <article class="card">
+        <h2>Didaktische Logik</h2>
+        <p class="muted">Die Lernlogik folgt einem klaren Dreischritt: erst Fall und Persona verstehen, dann diagnostizieren und entwickeln, am Ende reflektieren und vergleichen.</p>
+      </article>
+
+      <article class="card">
+        <h2>45-Minuten-Ablauf</h2>
+        <div class="phase-list">
+          <div class="phase-row">
+            <div class="phase-time">0-5 Min.</div>
+            <div>
+              <h3>Einstieg</h3>
+              <p class="phase-text">Auftrag klaeren, Beispielunternehmen setzen, Gruppen in die Einleitung schicken.</p>
+            </div>
+          </div>
+          <div class="phase-row">
+            <div class="phase-time">5-12 Min.</div>
+            <div>
+              <h3>Einleitung</h3>
+              <p class="phase-text">Persona und Zielrolle an das eigene Unternehmen anpassen.</p>
+            </div>
+          </div>
+          <div class="phase-row">
+            <div class="phase-time">12-24 Min.</div>
+            <div>
+              <h3>Hauptteil I</h3>
+              <p class="phase-text">Bedarfsanalyse mit Wollen, Koennen und Duerfen bearbeiten.</p>
+            </div>
+          </div>
+          <div class="phase-row">
+            <div class="phase-time">24-36 Min.</div>
+            <div>
+              <h3>Hauptteil II</h3>
+              <p class="phase-text">PE-Massnahmen waehlen, ins Ticket ueberfuehren und Erfolgskriterien definieren.</p>
+            </div>
+          </div>
+          <div class="phase-row">
+            <div class="phase-time">36-45 Min.</div>
+            <div>
+              <h3>Auswertung</h3>
+              <p class="phase-text">Report sichten, Musterfall aufrufen und die Gruppenergebnisse vergleichen.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Moderationshinweise</h2>
+        <div class="section-stack">
+          <div class="hint-box">
+            <strong>Einleitung</strong>
+            <p class="muted">"Passt den Fall an euer Unternehmen an, aber verliert nicht die Kernlogik aus Wachstum, Fachkraeftemangel und arbeitsintegrierter Entwicklung."</p>
+          </div>
+          <div class="hint-box">
+            <strong>Hauptteil</strong>
+            <p class="muted">"Nicht jede Entwicklungsfrage ist ein Trainingsproblem. Fragt euch immer: Wollen, Koennen oder Duerfen?"</p>
+          </div>
+          <div class="hint-box">
+            <strong>Auswertung</strong>
+            <p class="muted">"Vergleicht euren Report mit dem Pflege-Beispiel und achtet darauf, ob euer Unternehmenskontext realistisch abgebildet bleibt."</p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Seminaranleitung</p>
+    <div class="footer-actions">
+      <a href="arbeitsblatt-1.html">Weiter zur Einleitung</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

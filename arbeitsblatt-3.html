@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbeitsblatt 3 | Workintegrated Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-workbook-section="ab3">
+  <header class="site-header">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand__title">Workintegrated Learning</div>
+      </div>
+      <button class="burger" id="burgerButton" aria-label="Menue oeffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="site-nav" id="siteNav">
+      <div class="site-nav__panel">
+        <div class="site-nav__section">
+          <div class="site-nav__label">Navigation</div>
+          <div class="site-nav__links">
+            <a href="index.html">Ausgangssituation</a>
+            <a href="arbeitsblatt-1.html">Arbeitsblatt 1</a>
+            <a href="arbeitsblatt-2.html">Arbeitsblatt 2</a>
+            <a class="is-active" href="arbeitsblatt-3.html">Arbeitsblatt 3</a>
+            <a href="report.html">Report</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page page-simple">
+    <header class="page-header">
+      <p class="eyebrow">Hauptteil</p>
+      <h1>PE-Massnahmen und PE-Ticket</h1>
+      <p class="page-lead">Waehlt passende arbeitsintegrierte Massnahmen aus, uebernehmt sie ins Ticket und formuliert daraus eine belastbare Loesung.</p>
+    </header>
+
+    <section class="section-stack">
+      <article class="card">
+        <h2>Maßnahmen-Assistent</h2>
+        <p class="muted">Gestalte eigene Massnahmen, oder waehle bereits vorgestellte aus und ergaenze sie.</p>
+        <section class="measure-own-section">
+          <div class="measure-own-section__header">
+            <h3>Eigene Massnahme gestalten</h3>
+            <button class="button button--small button--success-light" id="addCustomMeasure" type="button">+ Eigene Massnahme hinzufuegen</button>
+          </div>
+          <div id="customMeasures" class="selected-measures empty-state-small">Noch keine eigene Massnahme angelegt.</div>
+        </section>
+        <div class="measures-toolbar">
+          <input class="search-input" id="measureSearch" type="text" placeholder="Massnahmen durchsuchen">
+        </div>
+        <div class="measure-layout">
+          <div class="measure-catalog" id="measureCatalog"></div>
+          <section class="measure-selection">
+            <div class="page-actions measure-selection__header">
+              <h3>Eure Massnahmen in einer Liste</h3>
+            </div>
+            <div id="selectedMeasures" class="selected-measures empty-state-small">Noch keine Massnahmen ausgewaehlt.</div>
+          </section>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>PE-Ticket</h2>
+        <div class="content-grid">
+          <div class="card card--wide">
+            <h3>Ausgangssituation und Ziel</h3>
+            <div class="form-grid">
+              <label class="field"><span>Unternehmen</span><input data-persist="ticket_unternehmen" type="text" placeholder="Unternehmen oder Bereich"></label>
+              <label class="field"><span>Bereich</span><input data-persist="ticket_bereich" type="text" placeholder="z. B. Pflege, Logistik"></label>
+              <label class="field"><span>Persona</span><input data-persist="ticket_persona" type="text" placeholder="Name der Persona"></label>
+              <label class="field"><span>Anlass</span><input data-persist="ticket_anlass" type="text" placeholder="z. B. Expansion"></label>
+              <label class="field field--wide"><span>Business-Ziel</span><textarea data-persist="ticket_businessziel" rows="3" placeholder="Welches Unternehmensziel wird verfolgt?"></textarea></label>
+              <label class="field"><span>Zielrolle</span><input data-persist="ticket_zielrolle" type="text" placeholder="Welche Rolle soll erreicht werden?"></label>
+              <label class="field"><span>Zeitpunkt</span><input data-persist="ticket_zeitpunkt" type="text" placeholder="Bis wann?"></label>
+              <label class="field field--wide"><span>Erwarteter Beitrag</span><textarea data-persist="ticket_beitrag" rows="3" placeholder="Welcher Nutzen entsteht?"></textarea></label>
+            </div>
+            <div class="info-box info-box--blue">
+              <strong>Hinweis</strong>
+              <p>In eurem Report wird sich das PE-Ticket mit den ausgewaehlten Massnahmen ergaenzen.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Kurzdiagnose</h3>
+            <div class="form-grid form-grid--single">
+              <label class="field"><span>Wollen</span><textarea data-persist="ticket_wollen" rows="3" placeholder="Kurzdiagnose zu Wollen"></textarea></label>
+              <label class="field"><span>Koennen</span><textarea data-persist="ticket_koennen" rows="3" placeholder="Kurzdiagnose zu Koennen"></textarea></label>
+              <label class="field"><span>Duerfen</span><textarea data-persist="ticket_duerfen" rows="3" placeholder="Kurzdiagnose zu Duerfen"></textarea></label>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Erfolgskriterien</h3>
+            <p class="muted">Wie laesst sich eure PE-Massnahme in Erfolgskriterien ueberfuehren. Wie machen sich die PE-Massnahmen im Berufsalltag bemerkbar. Welche Entlastung entsteht fuer das Team oder fuer die Fuehrungskraft. Welche formellen oder informellen Lernfortschritte sind erkennbar.</p>
+            <div class="form-grid form-grid--single">
+              <label class="field"><span>Fortschritt im Alltag</span><textarea data-persist="erfolg_alltag" rows="3" placeholder="Woran zeigt sich Fortschritt?"></textarea></label>
+              <label class="field"><span>Entlastung fuer die Fuehrungskraft</span><textarea data-persist="erfolg_entlastung" rows="3" placeholder="Woran zeigt sich Entlastung?"></textarea></label>
+              <label class="field"><span>Lernfortschritt der Person</span><textarea data-persist="erfolg_person" rows="3" placeholder="Woran merkt die Person Fortschritt?"></textarea></label>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Ergaenzende Angaben</h2>
+        <label class="field" style="margin-top: 16px;">
+          <span>Sonstige Angaben zur PE-Massnahmen</span>
+          <textarea data-persist="pitch_text" rows="5" placeholder="Formuliert eure Kernaussage fuer die Praesentation."></textarea>
+        </label>
+        <label class="field" style="margin-top: 16px;">
+          <span>Welche Herausforderungen sind euch in Bezug auf WIL aufgefallen?</span>
+          <textarea data-persist="wil_herausforderungen" rows="4" placeholder="z. B. Zeitdruck, rechtliche Grenzen, Begleitung im Alltag, Ressourcen, Rollenklarheit"></textarea>
+        </label>
+      </article>
+
+      <div class="report-actions-bottom">
+        <button class="button button--large button--ghost" data-action="open-report">Eigenen Report sichten</button>
+        <button class="button button--large button--primary" data-action="generate-pdf">Report erstellen</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Arbeitsblatt 3: PE-Ticket</p>
+    <div class="footer-actions">
+      <a href="report.html">Zum Report</a>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="report-utils.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

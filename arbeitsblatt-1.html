@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbeitsblatt 1 | Workintegrated Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-workbook-section="ab1">
+  <header class="site-header">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand__title">Workintegrated Learning</div>
+      </div>
+      <button class="burger" id="burgerButton" aria-label="Menue oeffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="site-nav" id="siteNav">
+      <div class="site-nav__panel">
+        <div class="site-nav__section">
+          <div class="site-nav__label">Navigation</div>
+          <div class="site-nav__links">
+            <a href="index.html">Ausgangssituation</a>
+            <a class="is-active" href="arbeitsblatt-1.html">Arbeitsblatt 1</a>
+            <a href="arbeitsblatt-2.html">Arbeitsblatt 2</a>
+            <a href="arbeitsblatt-3.html">Arbeitsblatt 3</a>
+            <a href="report.html">Report</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page page-simple">
+    <header class="page-header">
+      <p class="eyebrow">Einleitung</p>
+      <h1>Beispielunternehmen kurz beschreiben und Persona anpassen</h1>
+      <p class="page-lead">Hier legt die Gruppe die Grundlage fuer alles Weitere. Ziel ist ein glaubwuerdiger Fall mit einer analytisch brauchbaren Persona.</p>
+    </header>
+
+    <section class="section-stack">
+      <article class="card">
+        <h2>Aufgabe</h2>
+        <p class="muted">Beschreibt kurz euer Beispielunternehmen und gestaltet dann die Persona so, dass sie zum Unternehmen und zum Entwicklungsziel passt.</p>
+      </article>
+
+      <article class="card">
+        <h2>Beispielunternehmen</h2>
+        <div class="form-grid">
+          <label class="field"><span>Gruppenname</span><input data-persist="meta_group" type="text" placeholder="z. B. Gruppe 2"></label>
+          <label class="field"><span>Unternehmensname</span><input data-persist="meta_unternehmensname" type="text" placeholder="z. B. PflegePlus Nord"></label>
+          <label class="field"><span>Branche</span><input data-persist="unternehmen_branche" type="text" placeholder="z. B. Pflege"></label>
+          <label class="field"><span>Groesse</span><input data-persist="unternehmen_groesse" type="text" placeholder="z. B. 67 Mitarbeitende"></label>
+          <label class="field"><span>Personalbedarf</span><input data-persist="unternehmen_bedarf" type="text" placeholder="z. B. Fachkraefte, Koordination"></label>
+          <label class="field"><span>Expansionsschritt</span><input data-persist="unternehmen_wachstum" type="text" placeholder="z. B. neues Angebot oder Standort"></label>
+          <label class="field"><span>Zielrolle</span><input data-persist="unternehmen_zielrolle" type="text" placeholder="z. B. Teamkoordination"></label>
+          <label class="field"><span>Zeitrahmen</span><input data-persist="unternehmen_zeitraum" type="text" placeholder="z. B. 9 Monate"></label>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Persona</h2>
+        <div class="form-grid">
+          <label class="field"><span>Name</span><input data-persist="persona_name" type="text" placeholder="Name der Persona"></label>
+          <label class="field"><span>Alter</span><input data-persist="persona_alter" type="text" placeholder="z. B. 31 Jahre"></label>
+          <label class="field"><span>Aktueller Job</span><input data-persist="persona_job" type="text" placeholder="z. B. Pflegehilfskraft"></label>
+          <label class="field"><span>Ausbildungsweg</span><input data-persist="persona_ausbildung" type="text" placeholder="z. B. Helferausbildung"></label>
+          <label class="field field--wide"><span>Berufserfahrung</span><textarea data-persist="persona_erfahrung" rows="4" placeholder="Welche Erfahrungen bringt die Person mit?"></textarea></label>
+          <label class="field"><span>Interessen</span><input data-persist="persona_interessen" type="text" placeholder="z. B. Organisation, Kommunikation"></label>
+          <label class="field"><span>Motivation</span><input data-persist="persona_motivation" type="text" placeholder="Was treibt die Person an?"></label>
+          <label class="field"><span>Lernpraeferenz</span><select data-persist="persona_lernpraeferenz"><option value="">Bitte waehlen</option><option>praktisch im Tun</option><option>begleitet im Team</option><option>strukturiert mit Anleitung</option><option>selbstgesteuert digital</option></select></label>
+          <label class="field"><span>Staerken</span><input data-persist="persona_staerken" type="text" placeholder="z. B. empathisch, verlaesslich"></label>
+          <label class="field"><span>Unsicherheiten</span><input data-persist="persona_unsicherheiten" type="text" placeholder="z. B. Dokumentation"></label>
+          <label class="field field--wide"><span>Informelle Lernerfahrungen</span><textarea data-persist="persona_informell" rows="4" placeholder="Wo hat die Person bereits informell gelernt oder Verantwortung uebernommen?"></textarea></label>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-note-header">
+          <h2>Zielrolle und erste Einschaetzung</h2>
+          <span class="card-note card-note--alert">Wichtig fuer AB2!</span>
+        </div>
+        <div class="form-grid">
+          <label class="field"><span>Rollenname</span><input data-persist="zielrolle_name" type="text" placeholder="Name der Zielrolle"></label>
+          <label class="field"><span>Verantwortungsgrad</span><input data-persist="zielrolle_verantwortung" type="text" placeholder="z. B. Anleitung, Koordination"></label>
+          <label class="field field--wide"><span>Aufgaben der Zielrolle</span><textarea data-persist="zielrolle_aufgaben" rows="4" placeholder="Welche 3-5 Aufgaben gehoeren zur Zielrolle?"></textarea></label>
+          <label class="field field--wide"><span>Noetige Kompetenzen</span><textarea data-persist="zielrolle_kompetenzen" rows="4" placeholder="Welche Kompetenzen braucht die Person dafuer?"></textarea></label>
+          <label class="field field--wide"><span>Wie koennte eine arbeitsintegrierte Foerderung der zu erreichenden Kompetenzen aussehen? (Bildung im Lernort Betrieb)</span><textarea data-persist="zielrolle_foerderung" rows="4" placeholder="Wie koennte Lernen direkt im Arbeitsprozess, im Team oder im Betrieb stattfinden?"></textarea></label>
+          <label class="field field--wide"><span>Warum ist diese Person interessant?</span><textarea data-persist="einschaetzung_relevant" rows="3" placeholder="Warum lohnt sich Entwicklung gerade hier?"></textarea></label>
+          <label class="field field--wide"><span>Welche Hinweise sprechen fuer Potenzial?</span><textarea data-persist="einschaetzung_potenzial" rows="3" placeholder="Welche Signale sprechen fuer Entwicklung?"></textarea></label>
+          <label class="field field--wide"><span>Welche Huerden sind schon sichtbar?</span><textarea data-persist="einschaetzung_huerden" rows="3" placeholder="Wo liegen Risiken oder Grenzen?"></textarea></label>
+        </div>
+        <div class="storage-tools">
+          <div class="page-actions">
+            <button class="button button--primary" data-action="save-workbook">In dein Report ueberfuehren</button>
+            <button class="button button--ghost" data-action="run-storage-check">Health Check</button>
+          </div>
+          <div class="health-check" id="storageHealthResult">
+            <p class="health-check__title">Speicherstatus</p>
+            <div class="health-check__item">
+              <strong>Local Storage</strong>
+              <span data-health="storage">Noch nicht geprueft</span>
+            </div>
+            <div class="health-check__item">
+              <strong>Gespeicherte Formulardaten</strong>
+              <span data-health="workbook">Noch nicht geprueft</span>
+            </div>
+            <div class="health-check__item">
+              <strong>Report-Abzug</strong>
+              <span data-health="report">Noch nicht geprueft</span>
+            </div>
+            <p class="health-check__hint" data-health-summary>Bitte speichern oder den Health Check starten.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Arbeitsblatt 1: Einleitung</p>
+    <div class="footer-actions">
+      <a href="arbeitsblatt-2.html">Weiter zu Arbeitsblatt 2</a>
+    </div>
+  </footer>
+
+  <script src="report-utils.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

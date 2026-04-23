@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbeitsblatt 2 | Workintegrated Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-workbook-section="ab2">
+  <header class="site-header">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand__title">Workintegrated Learning</div>
+      </div>
+      <button class="burger" id="burgerButton" aria-label="Menue oeffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="site-nav" id="siteNav">
+      <div class="site-nav__panel">
+        <div class="site-nav__section">
+          <div class="site-nav__label">Navigation</div>
+          <div class="site-nav__links">
+            <a href="index.html">Ausgangssituation</a>
+            <a href="arbeitsblatt-1.html">Arbeitsblatt 1</a>
+            <a class="is-active" href="arbeitsblatt-2.html">Arbeitsblatt 2</a>
+            <a href="arbeitsblatt-3.html">Arbeitsblatt 3</a>
+            <a href="report.html">Report</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page page-simple">
+    <header class="page-header">
+      <p class="eyebrow">Hauptteil</p>
+      <h1>Bedarfsanalyse</h1>
+      <p class="page-lead">Analysiert die Entwicklungsluecke sauber. Entscheidend ist die Trennung von Motivation, Kompetenz und organisationalem Duerfen.</p>
+    </header>
+
+    <section class="section-stack">
+      <article class="card">
+        <h2>Ist-Soll-Abgleich</h2>
+        <div class="form-grid">
+          <label class="field field--wide"><span>Ist-Profil</span><textarea data-persist="analyse_ist" rows="4" placeholder="Was bringt die Person bereits mit?"></textarea></label>
+          <label class="field field--wide"><span>Soll-Profil</span><textarea data-persist="analyse_soll" rows="4" placeholder="Welche Anforderungen stellt die Zielrolle?"></textarea></label>
+        </div>
+      </article>
+
+      <div class="analysis-grid">
+        <article class="card analysis-card analysis-card--want">
+          <h2>Wollen</h2>
+          <div class="form-grid form-grid--single">
+            <label class="field"><span>Einschaetzung</span><textarea data-persist="wollen_einschaetzung" rows="5" placeholder="Motivation, Sorgen, Zielkonflikte"></textarea></label>
+            <label class="field"><span>Belege</span><textarea data-persist="wollen_belege" rows="3" placeholder="Welche Hinweise stuetzen eure Einschaetzung?"></textarea></label>
+          </div>
+        </article>
+
+        <article class="card analysis-card analysis-card--can">
+          <h2>Koennen</h2>
+          <div class="form-grid form-grid--single">
+            <label class="field"><span>Einschaetzung</span><textarea data-persist="koennen_einschaetzung" rows="5" placeholder="Vorhandene und fehlende Kompetenzen"></textarea></label>
+            <label class="field"><span>Belege</span><textarea data-persist="koennen_belege" rows="3" placeholder="Welche Beobachtungen sprechen dafuer?"></textarea></label>
+          </div>
+        </article>
+
+        <article class="card analysis-card analysis-card--may">
+          <h2>Duerfen</h2>
+          <div class="form-grid form-grid--single">
+            <label class="field"><span>Einschaetzung</span><textarea data-persist="duerfen_einschaetzung" rows="5" placeholder="Welche organisationalen Huerden bremsen?"></textarea></label>
+            <label class="field"><span>Belege</span><textarea data-persist="duerfen_belege" rows="3" placeholder="Welche Rahmenbedingungen muessen veraendert werden?"></textarea></label>
+            <label class="field"><span>Welche rechtlichen Rahmen sind relevant?</span><textarea data-persist="duerfen_rechtlich" rows="3" placeholder="z. B. Qualifikationsgrenzen, Dokumentationspflichten, Aufsicht, Datenschutz"></textarea></label>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Priorisierung</h2>
+          <div class="form-grid">
+            <label class="field"><span>Groesste Barriere</span><select data-persist="priorisierung_barriere"><option value="">Bitte waehlen</option><option>Wollen</option><option>Koennen</option><option>Duerfen</option></select></label>
+            <label class="field"><span>Hauptfokus</span><select data-persist="priorisierung_fokus"><option value="">Bitte waehlen</option><option>Motivation staerken</option><option>Kompetenz aufbauen</option><option>Rahmen sichern</option></select></label>
+            <label class="field field--wide"><span>Begruendung</span><textarea data-persist="priorisierung_begruendung" rows="4" placeholder="Warum ist das gerade der zentrale Hebel?"></textarea></label>
+          </div>
+        </article>
+      </div>
+
+      <article class="card">
+        <h2>Green Flags</h2>
+        <div class="check-list">
+          <label><input data-persist="flag_training" type="checkbox"> Wir haben geprueft, ob wirklich Entwicklung und nicht nur Training gefragt ist.</label>
+          <label><input data-persist="flag_rolle" type="checkbox"> Wir haben die Zielrolle realistisch und anschlussfaehig formuliert.</label>
+          <label><input data-persist="flag_unternehmen" type="checkbox"> Wir haben den Unternehmenskontext bewusst einbezogen.</label>
+          <label><input data-persist="flag_belege" type="checkbox"> Wir stuetzen unsere Einschaetzungen auf nachvollziehbare Hinweise.</label>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Arbeitsblatt 2: Bedarfsanalyse</p>
+    <div class="footer-actions">
+      <a href="arbeitsblatt-3.html">Weiter zu Arbeitsblatt 3</a>
+    </div>
+  </footer>
+
+  <script src="report-utils.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
