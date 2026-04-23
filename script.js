@@ -168,15 +168,29 @@ function updateProgress() {
 }
 
 function restoreFields() {
+  let seededDefaults = false;
   persistFields.forEach((field) => {
     const key = field.dataset.persist;
-    if (!key || !(key in workbookData)) return;
-    if (field.type === "checkbox") {
-      field.checked = Boolean(workbookData[key]);
-    } else {
-      field.value = workbookData[key];
+    if (!key) return;
+
+    if (key in workbookData) {
+      if (field.type === "checkbox") {
+        field.checked = Boolean(workbookData[key]);
+      } else {
+        field.value = workbookData[key];
+      }
+      return;
+    }
+
+    const defaultValue = field.type === "checkbox" ? field.checked : field.value;
+    if (defaultValue !== undefined && defaultValue !== null && String(defaultValue).trim() !== "") {
+      workbookData[key] = defaultValue;
+      seededDefaults = true;
     }
   });
+  if (seededDefaults) {
+    persistWorkbook();
+  }
   updateProgress();
   setSaveState(Object.keys(workbookData).length ? "Automatisch gespeichert" : "Autosave aktiv");
 }
