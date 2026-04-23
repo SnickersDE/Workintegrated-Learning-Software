@@ -39,6 +39,14 @@
     return { id, label, content };
   }
 
+  function firstFilled(...values) {
+    for (const candidate of values) {
+      if (candidate === undefined || candidate === null) continue;
+      if (String(candidate).trim() !== "") return String(candidate);
+    }
+    return "";
+  }
+
   function getReportData() {
     const data = loadJson(STORAGE_KEY, {});
     const selectedMeasures = loadJson(MEASURE_KEY, []);
@@ -166,8 +174,8 @@
                 item("koennen_einschaetzung", "Koennen", applyOverride(overrides, "koennen_einschaetzung", value(data, "koennen_einschaetzung"))),
                 item("duerfen_einschaetzung", "Duerfen", applyOverride(overrides, "duerfen_einschaetzung", value(data, "duerfen_einschaetzung"))),
                 item("duerfen_rechtlich", "Rechtliche Rahmen", applyOverride(overrides, "duerfen_rechtlich", value(data, "duerfen_rechtlich"))),
-                item("priorisierung_barriere", "Groesste Barriere", applyOverride(overrides, "priorisierung_barriere", value(data, "priorisierung_barriere"))),
-                item("priorisierung_fokus", "Hauptfokus", applyOverride(overrides, "priorisierung_fokus", value(data, "priorisierung_fokus"))),
+                item("priorisierung_barriere", "Groesste Barriere", applyOverride(overrides, "priorisierung_barriere", firstFilled(data.priorisierung_barriere_text, data.priorisierung_barriere) || "Noch offen")),
+                item("priorisierung_fokus", "Hauptfokus", applyOverride(overrides, "priorisierung_fokus", firstFilled(data.priorisierung_fokus_text, data.priorisierung_fokus) || "Noch offen")),
                 item("priorisierung_begruendung", "Begruendung", applyOverride(overrides, "priorisierung_begruendung", value(data, "priorisierung_begruendung")))
               ]
             },

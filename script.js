@@ -1,6 +1,7 @@
 const STORAGE_KEY = "seminar-preview-workbook";
 const MEASURE_KEY = `${STORAGE_KEY}-measures`;
 const TASK_PROGRESS_KEY = `${STORAGE_KEY}-progress`;
+const SECTION_SAVE_KEY = `${STORAGE_KEY}-section-save`;
 
 const burgerButton = document.getElementById("burgerButton");
 const siteNav = document.getElementById("siteNav");
@@ -27,6 +28,7 @@ const healthSummary = document.querySelector("[data-health-summary]");
 const workbookData = loadJson(STORAGE_KEY, {});
 let selectedMeasures = loadJson(MEASURE_KEY, []);
 const taskProgress = loadJson(TASK_PROGRESS_KEY, {});
+const sectionSaveState = loadJson(SECTION_SAVE_KEY, {});
 let measureSearchTerm = "";
 const currentWorkbookSection = document.body?.dataset.workbookSection || "";
 
@@ -122,6 +124,10 @@ function persistMeasures() {
 
 function persistTaskProgress() {
   window.localStorage.setItem(TASK_PROGRESS_KEY, JSON.stringify(taskProgress));
+}
+
+function persistSectionSaveState() {
+  window.localStorage.setItem(SECTION_SAVE_KEY, JSON.stringify(sectionSaveState));
 }
 
 function setSaveState(message) {
@@ -275,28 +281,85 @@ function saveWorkbookManually() {
 
 function animateSaveButton(button) {
   if (!button) return;
-
-  const originalText = button.dataset.originalText || button.textContent || "Alles abspeichern";
-  button.dataset.originalText = originalText;
-  button.classList.add("is-morphing", "button--saved");
-  button.textContent = "✓";
-  button.disabled = true;
-
+  button.classList.remove("is-morphing");
+  void button.offsetWidth;
+  button.classList.add("is-morphing");
   window.setTimeout(() => {
     button.classList.remove("is-morphing");
-  }, 180);
+  }, 520);
+}
 
-  window.setTimeout(() => {
-    button.classList.remove("button--saved");
-    button.textContent = originalText;
-    button.disabled = false;
-  }, 1400);
+function getCardEditableElements(card) {
+  if (!card) return [];
+  return Array.from(card.querySelectorAll("input, select, textarea, button")).filter((element) => !element.closest(".section-save-row"));
+}
+
+function toggleCardEditing(card, enabled) {
+  getCardEditableElements(card).forEach((element) => {
+    if (enabled) {
+      if (element.dataset.sectionLockDisabled === "true") {
+        element.disabled = false;
+        delete element.dataset.sectionLockDisabled;
+      }
+      return;
+    }
+
+    if (element.disabled) return;
+    element.disabled = true;
+    element.dataset.sectionLockDisabled = "true";
+  });
+}
+
+function updateSectionSaveButton(button, saved) {
+  if (!button) return;
+  button.classList.toggle("button--section-saved", saved);
+  button.classList.toggle("button--ghost", !saved);
+  button.setAttribute("aria-pressed", saved ? "true" : "false");
+  button.setAttribute("title", saved ? "Erneut klicken, um wieder zu bearbeiten" : "Container abspeichern");
+}
+
+function setSectionCardSavedState(card, button, saved, options = {}) {
+  if (!card || !button) return;
+  const { persist = true, animate = false } = options;
+  const cardId = card.dataset.sectionSaveId;
+
+  card.classList.toggle("card--section-saved", saved);
+  toggleCardEditing(card, !saved);
+  updateSectionSaveButton(button, saved);
+
+  if (cardId && persist) {
+    sectionSaveState[cardId] = saved;
+    persistSectionSaveState();
+  }
+
+  if (animate) {
+    button.classList.remove("is-figma-save", "is-figma-release");
+    void button.offsetWidth;
+    button.classList.add(saved ? "is-figma-save" : "is-figma-release");
+    animateSaveButton(button);
+    window.setTimeout(() => {
+      button.classList.remove("is-figma-save", "is-figma-release");
+    }, 760);
+  }
 }
 
 function attachSaveButtonBehavior(button) {
   if (!button || button.dataset.saveBound === "true") return;
   button.dataset.saveBound = "true";
   button.addEventListener("click", () => {
+    if (button.dataset.saveMode === "section") {
+      const card = button.closest(".card");
+      const isSaved = button.classList.contains("button--section-saved");
+      if (isSaved) {
+        setSectionCardSavedState(card, button, false, { persist: true, animate: true });
+        setSaveState("Bearbeitung wieder aktiviert");
+      } else {
+        saveWorkbookManually();
+        setSectionCardSavedState(card, button, true, { persist: true, animate: true });
+      }
+      return;
+    }
+
     saveWorkbookManually();
     animateSaveButton(button);
   });
@@ -329,19 +392,24 @@ function injectSectionSaveButtons() {
     return Boolean(card.querySelector("[data-persist], [data-custom-measure], [data-measure-input]"));
   });
 
-  cardsWithFields.forEach((card) => {
+  cardsWithFields.forEach((card, index) => {
+    const cardId = `${currentWorkbookSection || "page"}-card-${index + 1}`;
+    card.dataset.sectionSaveId = cardId;
+
     const saveRow = document.createElement("div");
     saveRow.className = "section-save-row";
 
     const saveButton = document.createElement("button");
     saveButton.type = "button";
-    saveButton.className = "button button--small button--ghost";
+    saveButton.className = "button button--small button--ghost button--section-save";
     saveButton.dataset.action = "save-workbook";
-    saveButton.textContent = "Alles abspeichern";
+    saveButton.dataset.saveMode = "section";
+    saveButton.innerHTML = '<span class="button__label">Alles abspeichern</span><span class="button__check" aria-hidden="true">✓</span>';
     attachSaveButtonBehavior(saveButton);
 
     saveRow.appendChild(saveButton);
     card.appendChild(saveRow);
+    setSectionCardSavedState(card, saveButton, Boolean(sectionSaveState[cardId]), { persist: false, animate: false });
   });
 }
 
@@ -648,10 +716,18 @@ function clearWorkbook() {
 
   Object.keys(workbookData).forEach((key) => delete workbookData[key]);
   Object.keys(taskProgress).forEach((key) => delete taskProgress[key]);
+  Object.keys(sectionSaveState).forEach((key) => delete sectionSaveState[key]);
   selectedMeasures = [];
   window.localStorage.removeItem(STORAGE_KEY);
   window.localStorage.removeItem(MEASURE_KEY);
   window.localStorage.removeItem(TASK_PROGRESS_KEY);
+  window.localStorage.removeItem(SECTION_SAVE_KEY);
+  document.querySelectorAll(".card[data-section-save-id]").forEach((card) => {
+    const button = card.querySelector(".button--section-save");
+    if (button) {
+      setSectionCardSavedState(card, button, false, { persist: false, animate: false });
+    }
+  });
   updateProgress();
   updateTaskOverviewState();
   renderMeasures();
